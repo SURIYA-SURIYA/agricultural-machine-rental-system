@@ -1,0 +1,106 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Details</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('{% static 'assets/images/tractor1.jpg' %}') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+        }
+        .card {
+            background: rgba(0, 0, 0, 0.7);
+            border: none;
+            border-radius: 8px;
+            padding: 20px;
+            color: #fff;
+            margin-top: 20px;
+        }
+        .container {
+            margin-top: 80px;
+        }
+        .btn {
+            background-color: #28a745;
+            border-color: #28a745;
+            border-radius: 5px;
+        }
+        .btn:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+        }
+        table {
+            margin-top: 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            border-radius: 8px;
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+        }
+        th {
+            color: white;
+           /* background-color: #343a40;*/
+        }
+        td {
+            color: white;
+        }
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <h2>Payment Details</h2>
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Field</th>
+                            <th class="text-center">Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Amount:</strong></td>
+                            <td>${{ payment.amount }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Date:</strong></td>
+                            <td>{{ payment.payment_date }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Rental Request ID:</strong></td>
+                            <td>{{ rental_request.id }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Farmer Name:</strong></td>
+                            <td>{{ rental_request.farmer.username }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Machine:</strong></td>
+                            <td>{{ rental_request.machine.Machine_Name }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Status:</strong></td>
+                            <td>{{ rental_request.status }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="btn-container">
+                    <a href="{% url 'dashboard1' %}" class="btn">Back to Machine Owner Dashboard</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

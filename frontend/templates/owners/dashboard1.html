@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Machine Owner Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('{% static 'assets/images/tractor1.jpg' %}') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+        }
+        .card {
+            background: rgba(0, 0, 0, 0.7);
+            border: none;
+            border-radius: 8px;
+            padding: 20px;
+            color: #fff;
+            margin-top: 20px;
+        }
+        .btn {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+        .btn:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+        }
+        .container {
+            margin-top: 80px;
+        }
+        .view-payment-btn {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .view-payment-btn:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h2>Welcome to the Dashboard</h2>
+                        <p>You are logged in!</p>
+                        <a href="{% url 'machine_details_page' %}" class="btn btn-primary mt-3">Add Machine Details</a>
+                        <a href="{% url 'owner_rental_requests' %}" class="btn btn-primary mt-3">View Rental Requests</a>
+                        <a href="{% url 'home' %}" class="btn btn-primary mt-3">Logout</a>
+                        
+                        <!-- Payment Details Links
+                        {% for payment in payments %}
+
+                        {% if payment.payment_status == "Completed" %}
+                            <div>
+                                <a href="{% url 'view_payment_details' payment.id %}" class="btn btn-primary mt-3">View Payment Details</a>
+                            </div>
+                        {% endif %}
+                        {%  endfor%}-->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Machine Information Cards -->
+        <!-- Your existing machine information cards here -->
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

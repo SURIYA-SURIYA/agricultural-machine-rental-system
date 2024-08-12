@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment for Rental Request</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('{% static 'assets/images/harvest.jpg' %}') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            padding: 20px;
+        }
+        .card {
+            background: rgba(0, 0, 0, 0.7); /* Semi-transparent background for card */
+            border: none;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .card-title {
+            margin-bottom: 20px;
+        }
+        .table {
+            color: #fff;
+        }
+        .table td, .table th {
+            vertical-align: middle;
+        }
+        .form-label {
+            color: #fff;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Payment for Rental Request</h2>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Machine: {{ rental_request.machine.Machine_Name }}</h5>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped">
+                        <tbody>
+                            <tr>
+                                <th>Rental Days</th>
+                                <td>{{ rental_request.rental_days }}</td>
+                            </tr>
+                            <tr>
+                                <th>Status</th>
+                                <td>{{ rental_request.status }}</td>
+                            </tr>
+                            <tr>
+                                <th>Owner</th>
+                                <td>{{ rental_request.owner.username }}</td>
+                            </tr>
+                            <tr>
+                                <th>Owner Contact</th>
+                                <td>{{ rental_request.owner.mobile_no }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="id_amount" class="form-label">Amount</label>
+                        <input type="text" name="amount" id="id_amount" class="form-control" value="{{ total_amount }}" placeholder="Amount" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_cvv_number" class="form-label">CVV Number</label>
+                        <input type="text" name="cvv_number" id="id_cvv_number" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_debit_card_number" class="form-label">Debit Card Number</label>
+                        <input type="text" name="debit_card_number" id="id_debit_card_number" class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Make Payment</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Form</title>
+<script src="{% static 'js/login.js' %}"></script>
+<link rel="stylesheet" href="{% static 'css/contact.css' %}">
+<style>
+   
+</style>
+
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+</head>
+<body>
+
+<h1>contact page</h1>
+<!--nav bar-->
+<nav class="navbar navbar-dark bg-success fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand text-white" href="#">WEB BASED FARM EQUIPMENT RENTAL SYSTEM FOR AGRICULTURE</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="offcanvas offcanvas-success bg-success offcanvas-end " tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+        <div class="offcanvas-header ">
+          <h5 class="offcanvas-title  text-white" id="offcanvasDarkNavbarLabel">AGRICULTURE</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/index/home/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="/index/about/">about</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="/index/contact/">Contact</a>
+              </li>
+          </ul>
+         <!-- <form class="d-flex mt-3" role="search">
+           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-success" type="submit">Search</button>
+          </form>-->
+.        </div>
+      </div>
+    </div>
+  </nav>
+<!--nav bar-->
+
+<!-- Contact 1 - Bootstrap Brain Component -->
+<section id="contact">
+    <div class="section-content">
+        <h1 class="section-header">Get in <span class="content-header wow fadeIn " data-wow-delay="0.2s" data-wow-duration="2s"> Touch with us</span></h1>
+        <h5>We value your feedback and are here to assist with any questions or concerns you may have about our Web-Based Farm Equipment Rental System. Please feel free to reach out to us through any of the </h5>
+    </div>
+    <div class="contact-section">
+    <div class="container">
+        <form>
+            <div class="col-md-6 form-line">
+                  <div class="form-group">
+                      <label for="exampleInputUsername">Your name</label>
+                    <input type="text" class="form-control" id="" placeholder=" Enter Name">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail">Email Address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail" placeholder=" Enter Email id">
+                  </div>	
+                  <div class="form-group">
+                    <label for="telephone">Mobile No.</label>
+                    <input type="tel" class="form-control" id="telephone" placeholder=" Enter 10-digit mobile no.">
+                  </div>
+              </div>
+              <div class="col-md-6">
+                  <div class="form-group">
+                      <label for ="description"> Message</label>
+                       <textarea  class="form-control" id="description" placeholder="Enter Your Message"></textarea>
+                  </div>
+                  <div>
+
+                      <button type="button" class="btn btn-success submit"><i class="fa fa-paper-plane" aria-hidden="true"></i>  Send Message</button>
+                  </div>
+                  
+            </div>
+        </form>
+        <div class="img">
+            <img src="{% static 'assets/images/farm.jpg'  %}"   class="img-fluid rounded">
+            <div class="para">
+                <p>Agriculture Solutions Inc,</P>
+                <p>123 Green Field Avenue,</P>
+                 <p>Chennai Pillay Street (600028).</P>
+
+                        </div>
+        </div>
+    </div>
+</section>
+<!--contact-->
+<!--footer-->
+<footer class="bg-body-tertiary bg-success text-center text-lg-start">
+    <!-- Grid container -->
+    <div class="container p-4">
+      <!--Grid row-->
+      <div class="row">
+        <!--Grid column-->
+        <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+          <h5 class="text-uppercase text-center text-white">Agriculture Solutions Inc</h5>
+  
+          <p class="text-white">
+           
+          Our mission is to empower farmers by providing easy access to essential agricultural equipment through a reliable
+          and user-friendly rental platform.
+          We aim to foster sustainable farming practices and enhance the productivity of the agricultural community.
+       </p>
+          </p>
+        </div>
+        <!--Grid column-->
+  
+        <!--Grid column-->
+        <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+          <h5 class="text-uppercase text-center text-white">Green Field Brand</h5>
+  
+          <p class="text-white">
+            Our platform connects farmers with equipment owners,
+           ensuring access to essential machinery for enhanced productivity and sustainable farming practices.
+           To be the leading provider of innovative agricultural solutions, transforming the farming landscape 
+           by making advanced equipment accessible to every farmer.
+          </p>
+        </div>
+        <!--Grid column-->
+      </div>
+      <!--Grid row-->
+    </div>
+    <!-- Grid container -->
+  
+    <!-- Copyright -->
+    <div class="text-center text-white p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+      © 2024 Copyright:
+      <a class=" text-white" href="https://mdbootstrap.com/">AgricultureSolutionsInc@gmail.com</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+<!--footer-->
+</body>
+</html>

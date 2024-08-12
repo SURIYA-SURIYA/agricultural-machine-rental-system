@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Machine Owner Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('{% static 'assets/images/tractor1.jpg' %}') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .card {
+            background: rgba(0, 0, 0, 0.7);
+            border: none;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        .table thead th {
+            color: #fff;
+        }
+        .table tbody tr:nth-child(odd) {
+            color: #fff;
+
+        }
+        .table tbody tr:nth-child(even) {
+            color: #fff;
+
+        }
+        .btn-success {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+        .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+        .btn-success:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+        }
+        .btn-danger:hover {
+            background-color: #c82333;
+            border-color: #bd2130;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h2 class="text-center mb-4">Farmers Rental Requests</h2>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead class="thead">
+                        <tr>
+                            <th scope="col">Farmer ID</th>
+                            <th scope="col">Farmer Name</th>
+                            <th scope="col">Machine</th>
+                            <th scope="col">Rental Days</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for request in rental_requests %}
+                        <tr>
+                            <td>{{ request.farmer.id }}</td>
+                            <td>{{ request.farmer.username }}</td>
+                            <td>{{ request.machine.Machine_Name }}</td>
+                            <td>{{ request.rental_days }}</td>
+                            <td>{{ request.status }}</td>
+                            <td>
+                                {% if request.status == "PENDING" %}
+                                <a href="{% url 'accept_rental_request' request.id %}" class="btn btn-success btn-sm">Accept</a>
+                                <a href="{% url 'reject_rental_request' request.id %}" class="btn btn-danger btn-sm">Reject</a>
+                                {% else %}
+                                {{ request.status }}
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <a href="{% url 'dashboard1' %}" class="btn btn-primary return-btn">Return to Dashboard</a>
+        </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

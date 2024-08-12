@@ -1,0 +1,70 @@
+{% extends "base.html" %} 
+
+
+
+
+
+
+
+
+{% block content %} 
+
+<h1 >about page</h1>
+<a href="{% url 'dashboard' %}">Back to Dashboard</a>
+
+
+
+<h2 class="text-center text-dark text-uppercase">Machine Details</h2>
+
+<table class="table table-bordered">
+    <thead class="thead bg-success text-white text-center">
+        <tr>
+            <th>Machine Id</th>
+            <th>Machine Name</th>
+            <th>Machine type</th>
+            <th>Description</th>
+            <th>Days</th>
+            <th>Machine Image</th>
+            <th>Update</th>
+            <th>Delete</th>
+
+
+        </tr>
+</thead>
+<tbody class="bg-secondary text-white text-center">
+  {% for Machine_details in all_machines  %}
+
+  <tr>
+    <td>{{ Machine_details.Machine_id}}</td>
+    <td>{{ Machine_details.Machine_Name}}</td>
+    <td>{{ Machine_details.Machine_type}}</td>
+    <td>{{ Machine_details.Description}}</td>
+    <td>{{ Machine_details.Days}}</td>
+    <td>
+        {% if Machine_details.Image %}
+        <img src="{{Machine_details.Image.url}}" alt="Thumbnail" width="50px" height="50px">
+        {% else %}
+        No Image
+        {% endif %}
+    </td>
+    <td>
+        <a  href="{% url 'machine_update' Machine_details.Machine_id %}">
+            <button  class="btn btn-success">Update</button>
+           </a>
+           
+    </td>
+    <td>
+        <a  href="{% url 'Deleted_machine_details' Machine_details.Machine_id %}">
+ <button  class="btn btn-danger">Delete</button>
+</a>
+
+</td>
+
+  </tr>
+  {% endfor %}
+</tbody>
+
+</table>
+
+
+{% endblock %}

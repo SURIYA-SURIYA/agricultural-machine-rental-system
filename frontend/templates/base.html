@@ -1,0 +1,55 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Form</title>
+{% comment %} <script src="{% static 'js/login.js' %}"></script> {% endcomment %}
+{% comment %} <link rel="stylesheet" href="{% static 'css/customer.css' %}"> {% endcomment %}
+<style>
+   table,th,td{
+    border:1px solid black;
+    padding;10px;
+   }
+   form{
+      width:500px;
+      padding:10px;
+      gap:10px;
+      border-radius:10px;
+      display:flex;
+      align-item:center;
+      justify-content;center;
+      flex-direction:column;
+      margin:15px;
+      margin-left:400px;
+      color:white;
+   }
+</style>
+
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+</head>
+
+
+
+<body>
+{% include 'navbar.html' %}
+ 
+
+
+<!--Dynamic content-->
+{% block content %} 
+
+{% endblock %}
+  
+<!--Dynamic content-->
+
+{% include 'footer.html' %}
+
+
+</body>
+</html>

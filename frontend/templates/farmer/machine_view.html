@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Available Machines</title>
+    <style>
+        /* Basic styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        form {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Available Machines</h1>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Machine ID</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Description</th>
+                <th>Days</th>
+                <th>Image</th>
+                <th>Select</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for machine in all_machines %}
+                <tr>
+                    <td>{{ machine.Machine_id }}</td>
+                    <td>{{ machine.Machine_Name }}</td>
+                    <td>{{ machine.Machine_type }}</td>
+                    <td>{{ machine.Description }}</td>
+                    <td>{{ machine.Days }}</td>
+                    <td>
+                        {% if machine.Image %}
+                            <img src="{{ machine.Image.url }}" alt="{{ machine.Machine_Name }}" width="100">
+                        {% else %}
+                            No image
+                        {% endif %}
+                    </td>
+                    <td>
+                        <!--<form method="post" action="{% url 'submit_rental_request' %}" style="display:inline;">
+                            {% csrf_token %}
+                            <input type="hidden" name="machine_id" value="{{ machine.id }}">
+                            <button type="submit">Request</button>
+                        </form>-->
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="7">No machines available.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

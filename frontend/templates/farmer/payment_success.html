@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Successful</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('{% static 'assets/images/harvest.jpg' %}') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            padding: 20px;
+        }
+        .alert {
+            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background for the alert */
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        .alert-heading {
+            margin-bottom: 15px;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="alert alert-success text-center" role="alert">
+            <h4 class="alert-heading">Payment Successful!</h4>
+            <p>Your payment has been processed successfully. Thank you for your transaction.</p>
+            <hr>
+            <p class="mb-0">You can now return to your rental requests or continue browsing.</p>
+            <a href="{% url 'farmer_rental_requests' %}" class="btn btn-primary mt-3">Back to Rental Requests</a>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

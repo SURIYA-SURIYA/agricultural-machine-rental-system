@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Machine Owner Login</title>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <style>
+        body {
+            background: url('{% static 'assets/images/tractor1.jpg' %}') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .main {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            color: #fff;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+        .main h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        .main form {
+            display: flex;
+            flex-direction: column;
+        }
+        .main form .form-control {
+            margin-bottom: 10px;
+        }
+        .main button {
+            background-color: #28a745;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .main button:hover {
+            background-color: #218838;
+        }
+        .main ul {
+            list-style: none;
+            padding: 0;
+        }
+        .main ul li {
+            background: rgba(255, 0, 0, 0.7);
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .main .register-link {
+            margin-top: 20px;
+            font-size: 16px;
+        }
+        .main .register-link a {
+            color: #28a745;
+            text-decoration: none;
+        }
+        .main .register-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Login -->
+<div class="main">
+    <h2>Machine Owner Login</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Login</button>
+    </form>
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <div class="register-link">
+        <p>Don't have an account? <a href="{% url 'register1' %}">Register here</a></p>
+    </div>
+</div>
+
+</body>
+</html>

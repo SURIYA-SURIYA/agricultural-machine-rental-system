@@ -1,0 +1,144 @@
+
+{% load static %}<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background: url('{% static 'assets/images/harvest.jpg'  %}') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .navbar {
+            margin-bottom: 20px;
+        }
+        .navbar-brand {
+            font-weight: bold;
+        }
+        .container {
+           /* background: rgba(255, 255, 255, 0.8); Semi-transparent background */
+            padding: 20px;
+            border-radius: 8px;
+        }
+        h1, h2 {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+        .card {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .card img {
+            max-width: 100%;
+            height: 200px;
+            border-radius: 8px 8px 0 0;
+        }
+        .card h3 {
+            margin: 10px 0;
+        }
+        .card p {
+            margin: 5px 0;
+        }
+        .card .price {
+            font-weight: bold;
+            color: #333;
+        }
+        .card button {
+            margin-top: 10px;
+        }
+        .modal-content {
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark text-white bg-success">
+        <a class="navbar-brand" href="#">Farmer Dashboard</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main content -->
+    <div class="container mt-5">
+        <h3 class="text-center">Welcome to the Farmer Dashboard</h3>
+        <h5 class="text-center">Available Machines</h5>
+
+        <div class="card-container">
+            {% for machine in all_machines %}
+            <div class="card">
+                <img src="{{ machine.Image.url }}" alt="{{ machine.Machine_Name }}">
+                <h3>{{ machine.Machine_Name }}</h3>
+                <p>{{ machine.Machine_type }}</p>
+                <p>{{ machine.Description }}</p>
+                <p class="price">${{ machine.Machine_price }} per day</p>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#rentalModal{{ machine.id }}">
+                    Rent Now
+                </button>
+
+                <!-- Rental Request Modal -->
+                <div class="modal fade" id="rentalModal{{ machine.id }}" tabindex="-1" role="dialog" aria-labelledby="rentalModalLabel{{ machine.id }}" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="rentalModalLabel{{ machine.id }}">Rental Request for {{ machine.Machine_Name }}</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                {% for farmer in farmer_id %}
+                                <form method="post" action="{% url 'rental_request' machine.Machine_id farmer.id  %}">
+                                    {% csrf_token %}
+                                    {{ form.as_p }}
+                                    <input type="hidden" name="machine_id" value="{{ machine.Machine_id }}">
+                                    <input type="hidden" name="farmer_id" value="{{ farmer.id }}">
+                                    <button type="submit" class="btn btn-primary">Submit Request</button>
+                                </form>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
